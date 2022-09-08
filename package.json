@@ -7,12 +7,14 @@
 	"author": "mnebot <mnebotjr@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"server": "nodemon server.js",
+		"server": "nodemon server.js --ignore client",
 		"client:ios": "npm run ios --prefix client",
-		"client:android": "npm run android --prefix client"
+		"client:android": "npm run android --prefix client",
+		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client:ios\""
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
+		"cors": "^2.8.5",
 		"dotenv": "^16.0.2",
 		"express": "^4.18.1",
 		"express-async-errors": "^3.1.1",
