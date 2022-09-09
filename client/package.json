@@ -10,8 +10,14 @@
 		"debugger": "open 'rndebugger://set-debugger-loc?host=localhost&port=19000'"
 	},
 	"dependencies": {
+		"@expo-google-fonts/hammersmith-one": "0.2.2",
+		"@react-navigation/bottom-tabs": "^6.3.3",
+		"@react-navigation/native": "^6.0.12",
+		"@react-navigation/native-stack": "^6.8.0",
 		"@reduxjs/toolkit": "^1.8.5",
 		"expo": "~46.0.9",
+		"expo-app-loading": "~2.1.0",
+		"expo-font": "~10.2.0",
 		"expo-status-bar": "~1.4.0",
 		"react": "18.0.0",
 		"react-native": "0.69.5",

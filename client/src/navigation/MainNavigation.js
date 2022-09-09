@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet } from 'react-native';
+import AuthStack from './AuthStack';
 
 const MainNavigation = () => {
 	return (
-		<View style={styles.container}>
-			<Text>mainNavigation</Text>
-		</View>
+		<>
+			<AuthStack />
+		</>
 	);
 };
 

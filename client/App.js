@@ -1,14 +1,17 @@
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import MainContainer from './src/MainContainer';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
-import MainContainer from './src/MainContainer';
 
 export default function App() {
 	return (
 		<Provider store={store}>
-			<SafeAreaView style={styles.container}>
-				<MainContainer />
-			</SafeAreaView>
+			<View style={styles.container}>
+				<NavigationContainer>
+					<MainContainer />
+				</NavigationContainer>
+			</View>
 		</Provider>
 	);
 }
