@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
 
 const SignInScreen = () => {
 	return (
-		<View>
+		<View style={styles.container}>
 			<Text>SignInScreen</Text>
 		</View>
 	);
@@ -11,4 +10,9 @@ const SignInScreen = () => {
 
 export default SignInScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		paddingTop: '8%',
+	},
+});

@@ -1,12 +1,23 @@
 import { StyleSheet, TextInput } from 'react-native';
 
-const StyledInput = ({ placeholder, children, onChangeText, value }) => {
+const StyledInput = ({
+	placeholder,
+	placeholderTextColor,
+	autoCapitalize,
+	children,
+	onChangeText,
+	secureTextEntry,
+	value,
+}) => {
 	return (
 		<TextInput
 			style={styles.input}
 			placeholder={placeholder}
+			placeholderTextColor={placeholderTextColor}
+			autoCapitalize={autoCapitalize}
 			onChangeText={onChangeText}
-			value={value}>
+			value={value}
+			secureTextEntry={secureTextEntry}>
 			{children}
 		</TextInput>
 	);

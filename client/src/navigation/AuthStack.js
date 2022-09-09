@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SignUpScreen from '../screen/SignUp/SignUpScreen';
+import SignInScreen from '../screen/SignIn/SignInScreen';
 import WelcomeScreen from '../screen/Welcome/WelcomeScreen';
+import DashboardScreen from '../screen/Dashboard/DashboardScreen';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -17,6 +19,8 @@ const AuthStack = () => {
 			}}>
 			<Screen name="WelcomeScreen" component={WelcomeScreen} />
 			<Screen name="SignUpScreen" component={SignUpScreen} />
+			<Screen name="SignInScreen" component={SignInScreen} />
+			<Screen name="DashboardScreen" component={DashboardScreen} />
 		</Navigator>
 	);
 };
