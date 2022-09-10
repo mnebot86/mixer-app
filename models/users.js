@@ -31,7 +31,13 @@ const userSchema = new mongoose.Schema({
 		minlength: 6,
 		select: false,
 	},
-	avatar: String,
+	avatar: {
+		type: String,
+		validate: {
+			validator: validator.isURL,
+			message: 'Please provide a valid url',
+		},
+	},
 });
 
 userSchema.pre('save', async function () {
@@ -44,6 +50,12 @@ userSchema.methods.createJWT = function () {
 	const LIFETIME = process.env.JWT_LIFETIME;
 
 	return jwt.sign({ userId: this._id }, SECRET, { expiresIn: LIFETIME });
+};
+
+userSchema.methods.comparePassword = async function (candidatePassword) {
+	const isMatch = await bcrypt.compare(candidatePassword, this.password);
+
+	return isMatch;
 };
 
 export default mongoose.model('User', userSchema);

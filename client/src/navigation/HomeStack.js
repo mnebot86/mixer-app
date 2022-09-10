@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DashboardScreen from '../screen/Dashboard/DashboardScreen';
+import SettingsScreens from '../screen/Settings/SettingsScreens';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const HomeStack = () => {
 	return (
-		<Navigator>
+		<Navigator initialRouteName="DashboardScreen">
 			<Screen name="DashboardScreen" component={DashboardScreen} />
+			<Screen name="SettingsScreen" component={SettingsScreens} />
 		</Navigator>
 	);
 };

@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 import 'express-async-errors';
 
 dotenv.config();
@@ -22,8 +23,11 @@ import {
 	notFoundMiddleware,
 } from './middleware/index.js';
 
-app.use(express.json());
+if (process.env.NODE_ENV !== 'production') {
+	app.use(morgan('dev'));
+}
 
+app.use(express.json());
 //Proxy instead of cors
 
 //Routes

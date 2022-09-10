@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 import { StyledInput, StyledButton, AlertBar } from '../../components';
 import image from '../../assets/images/signup-bg.jpg';
 
 import { SIGN_UP } from '../../services/user';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/slices/userSlice';
-import { setToken } from '../../redux/slices/tokenSlice';
 import {
 	setAlertText,
 	setAlertType,
@@ -42,7 +42,7 @@ const SignUpScreen = ({ navigation }) => {
 			dispatch(setUser(user));
 
 			const token = response.token;
-			dispatch(setToken(token));
+			await SecureStore.setItemAsync('token', token);
 
 			dispatch(setAlertType('Success'));
 			dispatch(setAlertText('Account Creation Successful'));
