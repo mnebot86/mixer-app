@@ -10,7 +10,8 @@
 		"server": "nodemon server.js --ignore client",
 		"client:ios": "npm run ios --prefix client",
 		"client:android": "npm run android --prefix client",
-		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client:ios\""
+		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client:ios\"",
+		"db:seed": "node db/seed.js"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",

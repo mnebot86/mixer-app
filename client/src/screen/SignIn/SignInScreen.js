@@ -44,7 +44,7 @@ const SignInScreen = ({ navigation }) => {
 			setTimeout(() => {
 				dispatch(setUser(user));
 				dispatch(clearAlert());
-				navigation.navigate('DashboardScreen');
+				navigation?.navigate('DashboardScreen');
 			}, 1500);
 		} else {
 			dispatch(setAlertType('Error'));
@@ -84,7 +84,7 @@ const SignInScreen = ({ navigation }) => {
 					<StyledButton title="Sign In" onPress={onSubmit} />
 					<Text
 						style={styles.text}
-						onPress={() => navigation.navigate('SignUpScreen')}>
+						onPress={() => navigation?.navigate('SignUpScreen')}>
 						Not a member? <Text style={styles.subText}> Join!</Text>
 					</Text>
 				</View>
