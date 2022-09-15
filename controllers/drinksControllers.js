@@ -1,3 +1,6 @@
+import Drink from '../models/drinks.js';
+import { StatusCodes } from 'http-status-codes';
+
 const createDrink = async (req, res) => {
 	res.send('create drink');
 };
@@ -7,7 +10,8 @@ const getDrink = async (req, res) => {
 };
 
 const getAllDrinks = async (req, res) => {
-	res.send('get all drinks');
+	const drinks = await Drink.find({});
+	res.status(StatusCodes.OK).json({ drinks });
 };
 
 const updateDrink = async (req, res) => {

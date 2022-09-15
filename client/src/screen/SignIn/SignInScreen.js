@@ -31,7 +31,6 @@ const SignInScreen = ({ navigation }) => {
 		if (!response) return;
 
 		const error = response.error;
-
 		if (!error) {
 			const user = response.user;
 

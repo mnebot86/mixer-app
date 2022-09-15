@@ -11,6 +11,7 @@
 		"client:ios": "npm run ios --prefix client",
 		"client:android": "npm run android --prefix client",
 		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client:ios\"",
+		"start:a": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client:android\"",
 		"db:seed": "node db/seed.js"
 	},
 	"dependencies": {
