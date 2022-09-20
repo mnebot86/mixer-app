@@ -70,9 +70,10 @@ const verifyUser = async (req, res) => {
 	const { token } = req.body;
 	const { userId } = jwt.decode(token);
 
-	const user = await User.findOne({ _id: userId });
-
-	res.status(StatusCodes.OK).json({ user });
+	if (userId) {
+		const user = await User.findOne({ _id: userId });
+		res.status(StatusCodes.OK).json({ user });
+	}
 };
 
 export { register, login, updateUser, verifyUser };

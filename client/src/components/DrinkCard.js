@@ -1,18 +1,32 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { setParamId } from '../redux/slices/paramSlice';
+import { setParamId, setParamName } from '../redux/slices/paramSlice';
 
 const DrinkCard = ({ name, thumbNail, category, _id }) => {
 	const navigation = useNavigation();
 	const dispatch = useDispatch();
 
+	const userId = useSelector((state) => state.user);
+
 	const onPressHandle = () => {
 		dispatch(setParamId(_id));
+		dispatch(setParamName(name));
 		navigation.navigate('DrinkStack', {
 			screen: 'DrinkDetailScreen',
 		});
+	};
+	const [isRed, setIsRed] = useState(false);
+
+	const toggleFavoriteHandle = async () => {
+		if (!isRed) {
+			const addToFavorite = '';
+			setIsRed(true);
+		} else {
+			const removeFromFavorite = '';
+			setIsRed(false);
+		}
 	};
 
 	return (
@@ -28,6 +42,8 @@ const DrinkCard = ({ name, thumbNail, category, _id }) => {
 				{category.map((item, idx) => (
 					<Text key={`category-${idx}`}>{item}</Text>
 				))}
+
+				<Text>+</Text>
 			</View>
 		</TouchableOpacity>
 	);

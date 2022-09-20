@@ -10,7 +10,6 @@ const DashboardScreen = ({ navigation }) => {
 		const fetchDrinks = async () => {
 			const getDrinks = await getAllDrinks();
 			setDrinks(getDrinks.drinks);
-			console.log(getDrinks.drinks);
 		};
 
 		fetchDrinks();

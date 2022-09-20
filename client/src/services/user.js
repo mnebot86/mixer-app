@@ -27,7 +27,9 @@ export const LOGIN = async (credentials) => {
 
 export const verifyUser = async (token) => {
 	try {
-		const response = await axios.post(`${BASEURL}/auth/verifyUser`, token);
+		const response = await axios.post(`${BASEURL}/auth/verifyUser`, {
+			token,
+		});
 
 		return response.data;
 	} catch (error) {
