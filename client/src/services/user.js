@@ -25,6 +25,19 @@ export const LOGIN = async (credentials) => {
 	}
 };
 
+export const updateUser = async (id, body) => {
+	try {
+		const response = await axios.patch(
+			`${BASEURL}/auth/updateUser/${id}`,
+			body
+		);
+
+		return response.data;
+	} catch (error) {
+		return { error: error.response.data.msg };
+	}
+};
+
 export const verifyUser = async (token) => {
 	try {
 		const response = await axios.post(`${BASEURL}/auth/verifyUser`, {

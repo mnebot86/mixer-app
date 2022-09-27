@@ -16,6 +16,7 @@ import connectDB from './db/connect.js';
 //routers
 import authRouter from './routers/authRouter.js';
 import drinkRouter from './routers/drinkRouter.js';
+import bookmarkRouter from './routers/bookmarkRouter.js';
 
 //Middleware
 import {
@@ -37,6 +38,7 @@ app.get('/api/v1', (req, res) => {
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/drinks', drinkRouter);
+app.use('/api/v1/bookmarks', bookmarkRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

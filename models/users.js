@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
 			message: 'Please provide a valid url',
 		},
 	},
-	favorites: [{ type: mongoose.Types.ObjectId }],
+	favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bookmark' }],
 });
 
 userSchema.pre('save', async function () {

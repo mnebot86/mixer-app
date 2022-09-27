@@ -1,11 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Modal } from 'react-native';
+import { CreateDrink } from '../../components';
 
 const BarScreen = () => {
+	const [isModalVisible, setIsModalVisible] = useState(false);
+
 	return (
 		<View style={styles.container}>
 			<Text>Favorite</Text>
-			<Text>Create</Text>
+			<Text onPress={() => setIsModalVisible(!isModalVisible)}>
+				Create
+			</Text>
+			<Modal
+				animationType="slide"
+				transparent={true}
+				visible={isModalVisible}>
+				<CreateDrink />
+			</Modal>
 		</View>
 	);
 };

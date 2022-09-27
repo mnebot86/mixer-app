@@ -1,14 +1,25 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	TouchableOpacity,
+	Button,
+} from 'react-native';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { setParamId, setParamName } from '../redux/slices/paramSlice';
+import { updateUser } from '../services/user';
 
 const DrinkCard = ({ name, thumbNail, category, _id }) => {
 	const navigation = useNavigation();
 	const dispatch = useDispatch();
 
-	const userId = useSelector((state) => state.user);
+	const user = useSelector((state) => state.user);
+	const userId = user.user.user?._id;
+	const userFavorites = user.user.user?.favorites || [];
+	const [isRed, setIsRed] = useState(false);
 
 	const onPressHandle = () => {
 		dispatch(setParamId(_id));
@@ -17,16 +28,25 @@ const DrinkCard = ({ name, thumbNail, category, _id }) => {
 			screen: 'DrinkDetailScreen',
 		});
 	};
-	const [isRed, setIsRed] = useState(false);
 
-	const toggleFavoriteHandle = async () => {
-		if (!isRed) {
-			const addToFavorite = '';
-			setIsRed(true);
+	const toggleFavoriteHandle = async (id) => {
+		let updateFavorite;
+
+		if (userFavorites.length === 0) {
+			updateFavorite = {
+				favorites: [id],
+			};
+		} else if (userFavorites.includes(id)) {
+			updateFavorite = {
+				favorites: [userFavorites.filter((item) => item !== id)],
+			};
 		} else {
-			const removeFromFavorite = '';
-			setIsRed(false);
+			updateFavorite = {
+				favorites: [...userFavorites, id],
+			};
 		}
+
+		await updateUser(userId, updateFavorite);
 	};
 
 	return (
@@ -43,7 +63,7 @@ const DrinkCard = ({ name, thumbNail, category, _id }) => {
 					<Text key={`category-${idx}`}>{item}</Text>
 				))}
 
-				<Text>+</Text>
+				<Button title="+" onPress={() => toggleFavoriteHandle(_id)} />
 			</View>
 		</TouchableOpacity>
 	);

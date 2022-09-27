@@ -4,7 +4,8 @@ import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
 import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
-	const { firstName, lastName, email, password, avatar } = req.body;
+	const { firstName, lastName, email, password, avatar, favorites } =
+		req.body;
 
 	if (!firstName || !lastName || !email || !password) {
 		throw new BadRequestError('Please provide all values');
@@ -21,6 +22,7 @@ const register = async (req, res) => {
 		email,
 		password,
 		avatar,
+		favorites,
 	});
 
 	const token = user.createJWT();
@@ -31,6 +33,7 @@ const register = async (req, res) => {
 			lastName: user.lastName,
 			email: user.email,
 			avatar: user.avatar,
+			favorites: [...user.favorites],
 		},
 		token,
 	});
@@ -63,7 +66,15 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-	res.send('updateUser user');
+	const { id } = req.params;
+
+	if (!id) {
+		throw new BadRequestError('Please provide user id');
+	}
+
+	const user = await User.findByIdAndUpdate(id, req.body, { new: true });
+
+	res.status(StatusCodes.OK).json({ user });
 };
 
 const verifyUser = async (req, res) => {

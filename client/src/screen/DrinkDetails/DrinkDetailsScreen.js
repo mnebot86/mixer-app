@@ -18,8 +18,6 @@ const DrinkDetailsScreen = () => {
 		fetchDrink(id);
 	}, []);
 
-	console.log(drink);
-
 	const {
 		category,
 		glass,
@@ -39,7 +37,6 @@ const DrinkDetailsScreen = () => {
 			<Image source={{ uri: thumbNail }} style={styles.img} />
 
 			{ingredients?.map((ingredient, idx) => {
-				console.log(ingredient.amount);
 				return (
 					<Text key={`ingredient-${idx}`} style={styles.text}>
 						{ingredient.amount} {ingredient.name}

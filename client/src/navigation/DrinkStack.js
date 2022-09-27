@@ -7,7 +7,6 @@ const { Navigator, Screen } = createStackNavigator();
 export const DrinkStack = () => {
 	const { name } = useSelector((state) => state.param);
 
-	console.log(name);
 	return (
 		<Navigator>
 			<Screen
